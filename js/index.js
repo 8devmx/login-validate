@@ -18,5 +18,6 @@ btnLogin.addEventListener('click', event => {
         return false
       }
       sessionStorage.setItem("user", JSON.stringify(json))
+      location.href = "profile.php"
     })
 })

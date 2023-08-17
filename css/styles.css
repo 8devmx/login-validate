@@ -11,9 +11,14 @@ body {
   justify-content: center;
   height: 100vh;
   width: 100vw;
+
+  &.bg-gray {
+    background-color: #f0f0f0;
+  }
 }
 
-form {
+form,
+.card {
   width: 480px;
 }
 
@@ -22,7 +27,8 @@ label {
   margin-bottom: 5px;
 }
 
-input {
+input,
+select {
   margin-bottom: 10px;
   display: block;
   width: 100%;
@@ -38,4 +44,39 @@ button {
   color: white;
   font-size: 1rem;
   width: 100%;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 20px;
+}
+
+.card-information {
+  text-align: center;
+}
+
+.card-information h3 {
+  font-size: 0.9rem;
+  color: cornflowerblue;
+}
+
+.card-information img {
+  border-radius: 50%;
+}
+
+.card-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+#updateProfile,
+#changeAvatar {
+  display: none;
+}
+
+#avatar {
+  cursor: pointer;
 }

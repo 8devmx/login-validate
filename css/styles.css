@@ -18,7 +18,8 @@ body {
 }
 
 form,
-.card {
+.card,
+#register {
   width: 480px;
 }
 
@@ -73,10 +74,17 @@ button {
 }
 
 #updateProfile,
-#changeAvatar {
+#changeAvatar,
+#register {
   display: none;
 }
 
 #avatar {
   cursor: pointer;
+}
+
+#showRegister,
+#hideRegister {
+  margin-top: 10px;
+  display: block;
 }

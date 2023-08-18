@@ -17,7 +17,7 @@ class User
   }
   public function login()
   {
-    $query = $this->con->prepare("SELECT u.id as id, u.nombre as username, r.nombre as rol, u.correo as email, u.avatar as avatar, u.rol_id FROM usuarios u LEFT JOIN roles r ON u.rol_id = r.id WHERE u.correo = :username AND u.password = :pass");
+    $query = $this->con->prepare("SELECT u.id as id, u.nombre as username, r.nombre as rol, u.correo as email, u.avatar as avatar, u.rol_id FROM usuarios u LEFT JOIN roles r ON u.rol_id = r.id WHERE u.correo = :username AND u.password = :pass AND status = 1");
     $username = $_POST["username"];
     $pass = $_POST["pass"];
     $query->execute(["username" => $username, ":pass" => $pass]);
@@ -39,6 +39,33 @@ class User
     $array = ["status" => "error", "text" => "No se actualizó correctamente"];
     if ($query->execute([":nombre" => $nombre, ":rol_id" => $rol, ":id" => $id])) {
       $array = ["status" => "success", "text" => "Se actualizó satisfactoriamente"];
+    }
+    echo json_encode($array);
+  }
+  public function createUser()
+  {
+    $query = $this->con->prepare("INSERT INTO usuarios (correo, password, telefono, nombre) VALUES (:correo, :password, :telefono, :nombre)");
+
+    $name = $_POST['name'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $array = ["status" => "error", "text" => "No se actualizó correctamente"];
+
+    if ($query->execute(
+      [
+        ":nombre" => $name,
+        ":telefono" => $phone,
+        ":password" => $password,
+        ":correo" => $email
+      ]
+    )) {
+      $array = [
+        "status" => "success",
+        "text" => "Se Registró satisfactoriamente, en breves momentos, te llegará un mensaje para activar tu cuenta",
+        "id" => $this->con->lastInsertId()
+      ];
     }
     echo json_encode($array);
   }
@@ -67,6 +94,9 @@ if (isset($_POST) && isset($_POST['function'])) {
       break;
     case 'setAvatar':
       $user->setAvatar();
+      break;
+    case 'createUser':
+      $user->createUser();
       break;
   }
 }

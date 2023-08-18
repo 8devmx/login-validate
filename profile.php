@@ -19,7 +19,7 @@
       </div>
       <div class="card-actions">
         <button id="btnUpdate">Actualizar</button>
-        <button>Ver</button>
+        <button id="logout">Cerrar sesión</button>
       </div>
     </div>
     <form action="#" id="updateProfile">

@@ -46,3 +46,12 @@ changeAvatar.addEventListener('change', (files) => {
       alert(json.text)
     })
 })
+
+logout.addEventListener("click", event => {
+  event.preventDefault()
+  const confirmation = confirm("Deseas cerrar sesión")
+  if (confirmation) {
+    sessionStorage.removeItem("user")
+    location.href = "./"
+  }
+})
